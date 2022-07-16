@@ -1,0 +1,79 @@
+.background {
+  height: 35vh;
+  object-fit: cover;
+}
+
+.detail {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.3;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #FFFFFF;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  height: 75vh;
+  transform: translateY(-60px);
+
+  img {
+    width: 22%;
+    height: 30%;
+  }
+
+  &--inputs {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    span {
+      color: #707070;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+      font-size: 0.95rem;
+      padding-left: 1rem;
+    }
+  
+    input {
+      border: 1px solid #DBDBDB;
+      background-color: transparent;
+      outline: 0;
+      margin-bottom: 1rem;
+      border-radius: 20px;
+      padding: 0.95rem;
+      color: black;
+    }
+  }
+
+  ion-button {
+    --border-radius: 20px;
+    --background: #2D9FDB;
+    --box-shadow: none;
+    font-style: italic;
+    font-size: 0.8rem;
+    width: 80%;
+    height: 3rem;
+    margin-top: 2rem;
+    text-transform: capitalize;
+  }
+
+  p {
+    color: #707070;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+
+    a {
+      color: #2D9FDB;
+      text-decoration: none;
+    }
+  }
+}
