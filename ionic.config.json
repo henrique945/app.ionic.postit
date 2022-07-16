@@ -1,0 +1,7 @@
+{
+  "name": "postit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
