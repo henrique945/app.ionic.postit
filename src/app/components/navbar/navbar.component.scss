@@ -1,0 +1,16 @@
+:host {
+  z-index: 999;
+  position: absolute;
+  bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  width: 90%;
+  height: 4rem;
+  background-color: white;
+  box-shadow: 0px 0px 9px #00000029;
+  border-radius: 33px;
+}
