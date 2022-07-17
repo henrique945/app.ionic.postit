@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,7 @@ import { LoginPayload } from 'src/app/models/payloads/login.payload';
 export class LoginPage {
 
   constructor(
-    private readonly toastController: ToastController,
-    private readonly alertController: AlertController,
+    private readonly helper: HelperService,
   ) { }
 
   public loginPayload: LoginPayload = {
@@ -22,26 +22,25 @@ export class LoginPage {
   public isLoading: boolean = false;
 
   public async login(): Promise<void> {
+    if (!this.canLogin())
+      return;
+
     this.isLoading = true;
 
     // toast
-    const toast = await this.toastController.create({
-      message: 'Logando...',
-      duration: 2000 //2s
-    });
-    toast.present();
+    await this.helper.showToast('Carregando...');
 
     // alert
-    const alert = await this.alertController.create({
-      header: 'Hello World',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => { console.log('Ok!') }
-        }
-      ]
-    });
-    alert.present();
+    await this.helper.showAlert('Hello', [
+      {
+        text: 'Ok',
+        handler: () => console.log('Ok!'),
+      },
+      {
+        text: 'Outro',
+        handler: () => console.log('Outro!'),
+      }
+    ]);
 
     console.log(this.loginPayload);
   }
