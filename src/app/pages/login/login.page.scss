@@ -29,6 +29,10 @@
   img {
     width: 22%;
     height: 30%;
+
+    @media screen and (min-width: 1000px) {
+      width: 10%;
+    }
   }
 
   &--inputs {
@@ -45,7 +49,7 @@
       font-size: 0.95rem;
       padding-left: 1rem;
     }
-  
+
     input {
       border: 1px solid #DBDBDB;
       background-color: transparent;
@@ -79,4 +83,13 @@
       text-decoration: none;
     }
   }
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+app-half-circle-spinner {
+  margin-left: 1rem;
 }

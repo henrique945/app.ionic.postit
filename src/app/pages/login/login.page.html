@@ -12,9 +12,12 @@
       <span>Senha</span>
       <input type="password" [(ngModel)]="loginPayload.password">
     </div>
-
-    <ion-button (click)="login()">confirmar</ion-button>
-
+    
+    <ion-button [class.disabled]="!canLogin()" (click)="login()">
+      {{ isLoading ? 'carregando...' : 'confirmar' }}
+      <app-half-circle-spinner *ngIf="isLoading" [animationDuration]="1000" [size]="25" [color]="'white'"></app-half-circle-spinner>
+    </ion-button>
+    
     <p>Não possui conta? <a href="">Cadastre-se!</a></p>
   </div>
 </div>
