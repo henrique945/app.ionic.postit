@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
+import { LogoComponent } from 'src/app/components/logo/logo.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
     LoginPageRoutingModule,
     HalfCircleSpinnerModule,
   ],
-  declarations: [LoginPage]
+  declarations: [
+    LoginPage,
+    LogoComponent,
+  ]
 })
 export class LoginPageModule { }

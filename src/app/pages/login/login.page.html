@@ -1,16 +1,16 @@
 <div class="login">
   <img class="background" src="assets/imgs/login_background.png">
-
+  
   <img class="detail" src="assets/imgs/background.svg">
-
+  
   <div class="container">
-    <img src="assets/imgs/login_logo.svg">
+    <app-logo src="assets/imgs/login_logo.svg" [full]="false"></app-logo>
 
     <div class="container--inputs">
       <span>E-mail</span>
-      <input type="text" [(ngModel)]="loginPayload.email">
+      <input class="input" type="text" [(ngModel)]="loginPayload.email">
       <span>Senha</span>
-      <input type="password" [(ngModel)]="loginPayload.password">
+      <input class="input" type="password" [(ngModel)]="loginPayload.password">
     </div>
     
     <ion-button class="button" [class.disabled]="!canLogin()" (click)="login()">
