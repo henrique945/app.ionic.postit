@@ -1,3 +1,16 @@
 <div class="navbar">
-  
+  <div class="navbar--item" routerLink="/feed">
+    <img *ngIf="currentNavbar !== navbarEnum.FEED" src="assets/imgs/navbar_feed_disabled.svg">
+    <img *ngIf="currentNavbar === navbarEnum.FEED" src="assets/imgs/navbar_feed_enabled.svg">
+  </div>
+
+  <div class="navbar--item" routerLink="/home">
+    <img *ngIf="currentNavbar !== navbarEnum.HOME" src="assets/imgs/navbar_home_disabled.svg">
+    <img *ngIf="currentNavbar === navbarEnum.HOME" src="assets/imgs/navbar_home_enabled.svg">
+  </div>
+
+  <div class="navbar--item" routerLink="/profile">
+    <img *ngIf="currentNavbar !== navbarEnum.PROFILE" src="assets/imgs/navbar_profile_disabled.svg">
+    <img *ngIf="currentNavbar === navbarEnum.PROFILE" src="assets/imgs/navbar_profile_enabled.svg">
+  </div>
 </div>

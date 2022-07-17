@@ -8,6 +8,10 @@
 }
 
 .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
   width: 90%;
   height: 4rem;
   background-color: white;
