@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-logo',
@@ -12,5 +12,12 @@ export class LogoComponent {
 
   @Input()
   public full: boolean = false;
+
+  @Output()
+  public onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  public sendEvent(): void {
+    this.onClick.emit(true);
+  }
 
 }
