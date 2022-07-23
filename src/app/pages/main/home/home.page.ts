@@ -73,6 +73,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalController.create({
       component: PostitModalComponent,
       cssClass: 'background-modal',
+      backdropDismiss: true,
       componentProps: {
         postIt
       }
@@ -93,6 +94,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalController.create({
       component: PostitModalComponent,
       cssClass: 'background-modal',
+      backdropDismiss: true,
       componentProps: {
         color,
         create: true
