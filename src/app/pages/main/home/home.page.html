@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="home">
 
-<ion-content>
+  <header>
+    <img src="assets/imgs/login_logo.svg" alt="Logo">
+  </header>
 
-</ion-content>
+  <main>
+    <ng-container *ngFor="let post of postItArray">
+      <app-postit [postIt]="post"></app-postit>
+    </ng-container>
+  </main>
+
+  <div class="home--new-postit">
+    <div class="home--new-postit--item"></div>
+    <div class="home--new-postit--item"></div>
+    <div class="home--new-postit--item"></div>
+    <div class="home--new-postit--item"></div>
+    <div class="home--new-postit--item"></div>
+    <div class="home--new-postit--item"></div>
+  </div>
+</div>
