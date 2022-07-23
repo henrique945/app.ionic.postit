@@ -55,7 +55,7 @@ export class LoginPage {
     ]);
 
     console.log(this.loginPayload);
-    await this.router.navigate(['/feed']);
+    await this.router.navigate(['/home']);
   }
 
   public canLogin(): boolean {
