@@ -1,0 +1,17 @@
+<div class="postit-modal" [style.background-color]="color">
+  <span class="postit-modal--close" (click)="modalController.dismiss()">X</span>
+
+  <header>
+    <input class="postit-modal--title" type="text" [(ngModel)]="postIt.title" placeholder="Título da nota">
+  </header>
+
+  <main>
+    <textarea class="postit-modal--annotation" 
+              [(ngModel)]="postIt.annotation" 
+              placeholder="Inserir anotações aqui"></textarea>
+  </main>
+
+  <footer>
+    <span (click)="savePostIt()">Colar no mural</span>
+  </footer>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { PostitModalComponent } from 'src/app/modals/postit-modal/postit-modal.component';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 
@@ -9,7 +11,9 @@ import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public modalController: ModalController
+  ) { }
 
   public postItArray: PostItProxy[] = [
     {
@@ -62,6 +66,26 @@ export class HomePage implements OnInit {
 
   public printPostIt(event: PostItProxy): void {
     console.log('postit', event);
+  }
+
+  public async openNewPostModal(color: string): Promise<void> {
+
+    const modal = await this.modalController.create({
+      component: PostitModalComponent,
+      cssClass: 'background-modal',
+      componentProps: {
+        color
+      }
+    });
+
+    await modal.present();
+
+    modal.onDidDismiss().then(async ({ data: postIt }) => {
+      if (postIt) {
+        this.postItArray.push(postIt);
+      }
+    });
+
   }
 
 }
