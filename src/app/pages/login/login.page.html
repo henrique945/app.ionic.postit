@@ -1,4 +1,4 @@
-<div class="login">
+<!-- <div class="login">
   <img class="background" src="assets/imgs/login_background.png">
 
   <img class="detail" src="assets/imgs/background.svg">
@@ -19,6 +19,89 @@
       </app-half-circle-spinner>
     </ion-button>
 
-    <p>Não possui conta? <a href="">Cadastre-se!</a></p>
+    <p>Não possui conta? <a href="#">Cadastre-se!</a></p>
   </div>
+</div> -->
+
+
+
+<div class="initial">
+
+  <div class="initial--background">
+    <img src="assets/imgs/login_background.png" alt="">
+  </div>
+
+  <div class="body" [class.signing--body]="isSigning">
+
+  <header>
+    <div class="logo" [class.signing--logo]="isSigning">
+      <img [class.hidden]="!isSigning" (click)="isSigning = !isSigning" src="assets/imgs/login_backbutton.svg" alt="">
+      <app-logo [class.signing--logo--img]="isSigning" src="assets/imgs/login_logo.svg" [full]="false" (onClick)="logoClick($event)"></app-logo>
+      <!-- <img class="logo--img" [class.signing--logo--img]="isSigning" src="../../../assets/imgs/login_short.svg" alt=""> -->
+      <div class="empty"></div>
+    </div>
+  </header>
+
+  <ng-template *ngIf="!isSigning" [ngTemplateOutlet]="signing" ></ng-template>
+  <ng-template *ngIf="isSigning" [ngTemplateOutlet]="signup"></ng-template>
+
+  </div>
+
 </div>
+
+<ng-template #signing>
+    <body class="login--inputs">
+
+    <label for="loginEmail" class="login--inputs--title">E-mail</label>
+    <input (keydown.enter)="password.focus()" class="login--inputs--email input-default" type="text" [(ngModel)]="loginPayload.email">
+    <!-- <input id="loginEmail" class="login--inputs--email input-default" type="text"> -->
+
+    <label for="loginPassword" class="login--inputs--title">Senha</label>
+    <!-- <input id="loginPassword" class="login--inputs--password input-default" type="password"> -->
+    <input #password (keydown.enter)="login()" class="login--inputs--password input-default" type="password" [(ngModel)]="loginPayload.password">
+
+    <ion-button class="button" [class.disabled]="!canLogin()" (click)="login()">
+      {{ isLoading ? 'carregando...' : 'confirmar' }}
+      <app-half-circle-spinner *ngIf="isLoading" [animationDuration]="1000" [size]="25" [color]="'white'">
+      </app-half-circle-spinner>
+    </ion-button>
+
+    </body>
+
+  <footer class="login--footer">
+    <span class="login--footer-account">Não possui conta? &nbsp;</span>
+    <span class="login--footer-register" (click)="isSigning = !isSigning">Cadastre-se</span>
+  </footer>
+</ng-template>
+
+
+<ng-template #signup>
+  <body class="login--inputs">
+
+  <label for="name" class="login--inputs--title">Nome completo*</label>
+  <input id="name" class="login--inputs--email input-default" type="text" [(ngModel)]="registerPayload.name">
+
+  <label for="email" class="login--inputs--title">E-mail*</label>
+  <input id="email" class="login--inputs--password input-default" type="text" [(ngModel)]="registerPayload.email">
+
+  <label for="emailConfirmation" class="login--inputs--title">Confirme o e-mail</label>
+  <input id="emailConfirmation" class="login--inputs--password input-default" type="text" [(ngModel)]="registerPayload.confirmEmail">
+
+  <label for="password" class="login--inputs--title">Senha</label>
+  <input id="password" class="login--inputs--password input-default" type="password" [(ngModel)]="registerPayload.password">
+
+  <label for="passwordConfirmation" class="login--inputs--title">Confirme a senha</label>
+  <input id="passwordConfirmation" class="login--inputs--password input-default" type="password" [(ngModel)]="registerPayload.confirmPassword">
+
+  <span class="signup--required">*Campos obrigatórios</span>
+
+  <span class="signup--required">Ao registrar-me, concordo com os termos de uso a Política de Privacidade do aplicativo.</span>
+
+  <ion-button class="button" [class.disabled]="!canRegister()" (click)="isSigning = !isSigning">
+    {{ isLoading ? 'carregando...' : 'Criar conta' }}
+    <app-half-circle-spinner *ngIf="isLoading" [animationDuration]="1000" [size]="25" [color]="'white'">
+    </app-half-circle-spinner>
+  </ion-button>
+
+  </body>
+</ng-template>

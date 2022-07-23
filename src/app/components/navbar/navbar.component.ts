@@ -26,7 +26,6 @@ export class NavbarComponent {
       });
   }
 
-  public navbarEnum: typeof NavbarEnum = NavbarEnum;
   public currentNavbar: NavbarEnum = NavbarEnum.HOME;
 
   public navbarList: NavbarItemInterface[] = [
