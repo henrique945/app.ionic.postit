@@ -16,12 +16,12 @@ export class PostitModalComponent implements OnInit {
   ) { }
 
   @Input()
-  public color: PostItColorEnum = PostItColorEnum.BLUE;
+  public color: PostItColorEnum;
 
-  // public title: string = '';
+  @Input()
+  public create: boolean = false;
 
-  // public annotation: string = '';
-
+  @Input()
   public postIt: PostItPayload = {
     id: 6,
     title: '',
@@ -29,7 +29,11 @@ export class PostitModalComponent implements OnInit {
     color: PostItColorEnum.BLUE
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.color) {
+      this.color = this.postIt.color;
+    }
+   }
 
   public savePostIt(): void {
     this.postIt.color = this.color;

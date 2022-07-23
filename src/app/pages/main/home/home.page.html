@@ -6,7 +6,9 @@
 
   <main>
     <ng-container *ngFor="let post of postItArray">
-      <app-postit (postItSelected)="printPostIt($event)" [postIt]="post"></app-postit>
+      <app-postit (postItSelected)="printPostIt($event)" 
+                  [postIt]="post"
+                  (click)="openPostModal(post)"></app-postit>
     </ng-container>
   </main>
 

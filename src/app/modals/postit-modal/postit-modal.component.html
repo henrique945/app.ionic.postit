@@ -1,12 +1,31 @@
-<div class="postit-modal" [style.background-color]="color">
-  <span class="postit-modal--close" (click)="modalController.dismiss()">X</span>
+<div class="postit-modal" [style.background-color]="postIt.color">
+
+  <span *ngIf="create" class="postit-modal--close" (click)="modalController.dismiss()">X</span>
+
+  <span *ngIf="!create" class="postit-modal--options" id="left-start">...</span>
+  <ion-popover trigger="left-start" side="left" alignment="start" [dismissOnSelect]="true">
+    <ng-template>  
+      <ion-content class="ion-padding postit-modal--options-box">
+        <ion-list>
+          <ion-item button="true" detail="false" (click)="create = true">Editar</ion-item>
+          <ion-item button="true" detail="false">Publicar no feed</ion-item>
+          <ion-item button="true" detail="false">Excluir nota</ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 
   <header>
-    <input class="postit-modal--title" type="text" [(ngModel)]="postIt.title" placeholder="Título da nota">
+    <input [readOnly]="!create"
+           class="postit-modal--title" 
+           type="text" 
+           [(ngModel)]="postIt.title" 
+           placeholder="Título da nota">
   </header>
 
   <main>
-    <textarea class="postit-modal--annotation" 
+    <textarea [readOnly]="!create"
+              class="postit-modal--annotation" 
               [(ngModel)]="postIt.annotation" 
               placeholder="Inserir anotações aqui"></textarea>
   </main>

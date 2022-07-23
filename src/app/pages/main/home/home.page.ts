@@ -68,13 +68,34 @@ export class HomePage implements OnInit {
     console.log('postit', event);
   }
 
+  public async openPostModal(postIt: PostItProxy): Promise<void> {
+
+    const modal = await this.modalController.create({
+      component: PostitModalComponent,
+      cssClass: 'background-modal',
+      componentProps: {
+        postIt
+      }
+    });
+
+    await modal.present();
+
+    modal.onDidDismiss().then(async ({ data: postIt }) => {
+      // let index = this.postItArray.findIndex(post => post.id == postIt.id);
+      // this.postItArray[index] = postIt;
+      console.log('postIt', postIt);
+      console.log('postItArray', this.postItArray);
+    });
+  }
+
   public async openNewPostModal(color: string): Promise<void> {
 
     const modal = await this.modalController.create({
       component: PostitModalComponent,
       cssClass: 'background-modal',
       componentProps: {
-        color
+        color,
+        create: true
       }
     });
 
