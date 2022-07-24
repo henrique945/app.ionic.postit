@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommentProxy } from 'src/app/models/proxies/comment.proxy';
 
 @Component({
   selector: 'app-comment',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class CommentComponent implements OnInit {
 
   constructor() { }
+
+  @Input()
+  public comment: CommentProxy;
 
   ngOnInit() {}
 

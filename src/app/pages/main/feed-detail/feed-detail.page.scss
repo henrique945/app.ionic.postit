@@ -32,12 +32,15 @@
     }
 
     main {
+        padding: 1.5rem;
+
         .feed-item {
             width: 100%;
             z-index: 100;
             padding: 1rem;
-            background-color: #f3f3;
-
+            max-height: 39rem;
+            overflow: hidden auto;
+            position: relative;
 
             header {
                 display: flex;
@@ -85,7 +88,7 @@
                 padding: 1rem;
                 color: #4E4E4E;
                 min-height: 15rem;
-                max-height: 15rem;
+                margin-bottom: 3rem;
 
                 .title {
                     font-weight: bold;
@@ -98,11 +101,19 @@
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 8;
                     line-clamp: 8;
+                    margin-bottom: 1.5rem;
+                }
+
+                .comment-item {
+                    margin-bottom: 1rem;
                 }
             }
 
             footer {
+                position: fixed;
                 display: flex;
+                bottom: 8rem;
+                height: 2rem;
 
                 .comment--section {
                     flex: 1;

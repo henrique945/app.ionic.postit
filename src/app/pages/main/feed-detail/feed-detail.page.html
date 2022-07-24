@@ -1,4 +1,4 @@
-<div class="feed-detail">  
+<div class="feed-detail">
   <img class="detail" src="assets/imgs/background.svg">
 
   <header>
@@ -7,7 +7,7 @@
   </header>
 
   <main>
-    <div class="feed-item">
+    <div class="feed-item" [style.background-color]="postIt.color">
       <header>
         <ion-avatar class="user--avatar">
           <img src="assets/imgs/user/user-example-1.jpg" />
@@ -20,19 +20,20 @@
             Economista
           </span>
         </div>
-        <button class="read--more" type="button">
-          Ler mais +
-        </button>
       </header>
       <main>
         <div class="title">
-          Dicas de Economista
+          {{ postIt.title }}
         </div>
         <div class="annotation">
-          Teste de postit
+          {{ postIt.annotation }}
         </div>
         <div class="comments">
-          teste
+          <ng-container *ngFor="let comment of postIt.comments">
+            <div class="comment-item">
+              <app-comment [comment]="comment"></app-comment>
+            </div>
+          </ng-container>
         </div>
       </main>
       <footer>
@@ -41,15 +42,15 @@
           <button type="button"> Publicar </button>
         </div>
         <div class="actions--section">
-          <ng-container>
-            <img src="assets/imgs/postit_like_heart.svg">
+          <ng-container *ngIf="!isLiked else liked">
+            <img src="assets/imgs/postit_like_heart.svg" (click)="setLikeToPostIt()">
           </ng-container>
         </div>
       </footer>
     </div>
-    
-    <ng-template #liked>  
-      <img src="assets/imgs/postit_like_heart_filled.svg">
-    </ng-template>
   </main>
 </div>
+
+<ng-template #liked>
+  <img src="assets/imgs/postit_like_heart_filled.svg" (click)="setLikeToPostIt()">
+</ng-template>
