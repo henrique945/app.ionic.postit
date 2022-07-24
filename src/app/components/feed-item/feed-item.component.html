@@ -11,7 +11,7 @@
         Economista
       </span>
     </div>
-    <button class="read--more" type="button">
+    <button class="read--more" type="button" [routerLink]="['/feed', postIt.id]">
       Ler mais +
     </button>
   </header>
@@ -29,7 +29,7 @@
       <button type="button"> Publicar </button>
     </div>
     <div class="actions--section">
-      <img src="assets/imgs/postit_comment.svg">
+      <img src="assets/imgs/postit_comment.svg" [routerLink]="['/feed', postIt.id]">
       <ng-container *ngIf="!isLiked else liked">
         <img src="assets/imgs/postit_like_heart.svg" (click)="setLikeToPostIt()">
       </ng-container>
