@@ -1,0 +1,144 @@
+.feed-detail {
+    position: relative;
+    overflow: hidden auto;
+    max-height: 100%;
+
+    .detail {
+        position: fixed;
+        top: -20px;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+
+        .go-back {
+            position: absolute;
+            left: 2rem;
+            width: 1rem;
+        }
+
+        .noteAndFriends {
+            width: 7rem;
+        }
+    }
+
+    main {
+        .feed-item {
+            width: 100%;
+            z-index: 100;
+            padding: 1rem;
+            background-color: #f3f3;
+
+
+            header {
+                display: flex;
+                align-items: center;
+
+                .user--avatar {
+                    width: 3rem;
+                    height: 3rem;
+                }
+
+                .user--info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    flex: 1;
+                    padding-left: 1.5rem;
+
+                    span {
+                        color: #4E4E4E;
+                    }
+
+                    &--name {
+                        font-size: 1rem;
+                        font-style: italic;
+                        font-weight: bold;
+                    }
+
+                    &--role {
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .read--more {
+                    width: 5rem;
+                    height: 2rem;
+                    background: none;
+                    border: none;
+                    color: #4E4E4E;
+                    font-weight: bold;
+                }
+            }
+
+            main {
+                padding: 1rem;
+                color: #4E4E4E;
+                min-height: 15rem;
+                max-height: 15rem;
+
+                .title {
+                    font-weight: bold;
+                }
+
+                .annotation {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 8;
+                    line-clamp: 8;
+                }
+            }
+
+            footer {
+                display: flex;
+
+                .comment--section {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    border-radius: 1rem;
+                    border: 1px solid #000;
+                    padding: 0 0.4rem;
+
+                    input {
+                        background: transparent;
+                        border: none;
+                        color: #000;
+                        outline: 0;
+                    }
+
+                    button {
+                        background: none;
+                        color: #4E4E4E;
+                    }
+                }
+            }
+
+            .actions--section {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                width: 5rem;
+
+                img {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+            }
+        }
+    }
+
+}
