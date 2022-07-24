@@ -1,46 +1,42 @@
-<header>
-  <ion-avatar class="user--avatar">
-    <img
-      src="assets/imgs/user/user-example-1.jpg"
-    />
-  </ion-avatar>
-  <div class="user--info">
-    <span class="user--info--name">
-      Ana Bonfim
-    </span>
-    <span class="user--info--role">
-      Economista
-    </span>
-  </div>
-  <button class="read--more" type="button">
-    Ler mais +
-  </button>
-</header>
-<main>
-  <div class="title">
-    Dicas de economia diária...
-  </div>
-  <div class="annotation">
-    - Um item
-    - Dois items
-  </div>
-</main>
-<footer>
-  <div>
-    <input
-      type="text"
-    >
-    <button
-      type="button"
-    > Publicar </button>
-  </div>
-  <div class="actions">
-    <img
-      src="assets/imgs/postit_comment.svg"
-    >
-    <img
-      src="assets/imgs/postit_like_heart.svg"
-    >
-  </div>
+<div class="feed-item" [style.background-color]="postIt.color">
+  <header>
+    <ion-avatar class="user--avatar">
+      <img src="assets/imgs/user/user-example-1.jpg" />
+    </ion-avatar>
+    <div class="user--info">
+      <span class="user--info--name">
+        Ana Bonfim
+      </span>
+      <span class="user--info--role">
+        Economista
+      </span>
+    </div>
+    <button class="read--more" type="button">
+      Ler mais +
+    </button>
+  </header>
+  <main>
+    <div class="title">
+      {{ postIt.title }}
+    </div>
+    <div class="annotation">
+      {{ postIt.annotation }}
+    </div>
+  </main>
+  <footer>
+    <div class="comment--section">
+      <input type="text" placeholder="Inserir comentário">
+      <button type="button"> Publicar </button>
+    </div>
+    <div class="actions--section">
+      <img src="assets/imgs/postit_comment.svg">
+      <ng-container *ngIf="!isLiked else liked">
+        <img src="assets/imgs/postit_like_heart.svg" (click)="setLikeToPostIt()">
+      </ng-container>
+    </div>
+  </footer>
+</div>
 
-</footer>
+<ng-template #liked>  
+  <img src="assets/imgs/postit_like_heart_filled.svg" (click)="setLikeToPostIt()">
+</ng-template>
