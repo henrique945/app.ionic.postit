@@ -5,5 +5,11 @@
     <img class="noteAndFriends" src="assets/imgs/note_and_friends.svg">
   </header>
 
-  <app-feed-item></app-feed-item>
+  <main>
+    <ng-container *ngFor="let post of postItArray">
+      <div class="feed-item">
+        <app-feed-item [postIt]="post"></app-feed-item>
+      </div>      
+    </ng-container>
+  </main>
 </div>
