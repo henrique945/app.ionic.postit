@@ -1,0 +1,55 @@
+<div class="feed-detail">  
+  <img class="detail" src="assets/imgs/background.svg">
+
+  <header>
+    <img class="go-back" src="assets/imgs/go-back.svg">
+    <img class="noteAndFriends" src="assets/imgs/note_and_friends.svg">
+  </header>
+
+  <main>
+    <div class="feed-item">
+      <header>
+        <ion-avatar class="user--avatar">
+          <img src="assets/imgs/user/user-example-1.jpg" />
+        </ion-avatar>
+        <div class="user--info">
+          <span class="user--info--name">
+            Ana Bonfim
+          </span>
+          <span class="user--info--role">
+            Economista
+          </span>
+        </div>
+        <button class="read--more" type="button">
+          Ler mais +
+        </button>
+      </header>
+      <main>
+        <div class="title">
+          Dicas de Economista
+        </div>
+        <div class="annotation">
+          Teste de postit
+        </div>
+        <div class="comments">
+          teste
+        </div>
+      </main>
+      <footer>
+        <div class="comment--section">
+          <input type="text" placeholder="Inserir comentário">
+          <button type="button"> Publicar </button>
+        </div>
+        <div class="actions--section">
+          <ng-container>
+            <img src="assets/imgs/postit_like_heart.svg">
+          </ng-container>
+        </div>
+      </footer>
+    </div>
+    
+    <ng-template #liked>  
+      <img src="assets/imgs/postit_like_heart_filled.svg">
+    </ng-template>
+  </main>
+</div>
