@@ -28,6 +28,10 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
+  {
+    path: 'feed-detail',
+    loadChildren: () => import('./pages/feed-detail/feed-detail.module').then( m => m.FeedDetailPageModule)
+  },
 ];
 
 @NgModule({
