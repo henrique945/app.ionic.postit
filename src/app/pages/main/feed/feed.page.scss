@@ -1,0 +1,32 @@
+.feed {
+    position: relative;
+
+    .detail {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    header {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        margin: 2rem 0;
+
+        img {
+            width: 7rem;
+        }
+    }
+
+    app-feed-item {        
+        background-color: #D7DF6B;
+        width: 90%;
+        height: 15rem;
+        z-index: 100;
+    }
+}
