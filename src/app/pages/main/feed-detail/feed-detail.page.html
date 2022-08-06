@@ -1,33 +1,33 @@
 <div class="feed-detail">
-  <img class="detail" src="assets/imgs/background.svg">
+  <img class="detail" src="assets/imgs/background.svg" />
 
   <header>
-    <img class="go-back" src="assets/imgs/go-back.svg" [routerLink]="['/feed']">
-    <img class="noteAndFriends" src="assets/imgs/note_and_friends.svg">
+    <img
+      class="go-back"
+      src="assets/imgs/go-back.svg"
+      [routerLink]="['/feed']"
+    />
+    <img class="noteAndFriends" src="assets/imgs/note_and_friends.svg" />
   </header>
 
   <main>
-    <div *ngIf="postIt" class="feed-item" [style.background-color]="postIt.color">
+    <div
+      *ngIf="postIt"
+      class="feed-item"
+      [style.background-color]="postIt.color"
+    >
       <header>
         <ion-avatar class="user--avatar">
-          <img src="assets/imgs/user/user-example-1.jpg" />
+          <img [src]="postIt.user?.imageUrl || 'assets/imgs/user/user-example-1.jpg'" />
         </ion-avatar>
         <div class="user--info">
-          <span class="user--info--name">
-            Ana Bonfim
-          </span>
-          <span class="user--info--role">
-            Economista
-          </span>
+          <span class="user--info--name"> {{ postIt.user?.name }} </span>
+          <span class="user--info--role"> {{ postIt.user?.role }} </span>
         </div>
       </header>
       <main>
-        <div class="title">
-          {{ postIt.title }}
-        </div>
-        <div class="annotation">
-          {{ postIt.annotation }}
-        </div>
+        <div class="title">{{ postIt.title }}</div>
+        <div class="annotation">{{ postIt.annotation }}</div>
         <div class="comments">
           <ng-container *ngFor="let comment of postIt.comments">
             <div class="comment-item">
@@ -38,19 +38,36 @@
       </main>
       <footer [style.background-color]="postIt.color">
         <div class="comment--section">
-          <input type="text" placeholder="Inserir comentário">
-          <button type="button"> Publicar </button>
+          <input [(ngModel)]="commentText" type="text" placeholder="Inserir comentário" />
+          <button type="button" [disabled]="isLoading" (click)="sendComment()">Publicar</button>
         </div>
         <div class="actions--section">
-          <ng-container *ngIf="!isLiked else liked">
-            <img src="assets/imgs/postit_like_heart.svg" (click)="setLikeToPostIt()">
-          </ng-container>
+          <svg
+            class="heart"
+            (click)="setLikeToPostIt()"
+            [class.disabled]="isLoading"
+            [class.heart--filled]="postIt.hasLiked"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 17.685 17.159"
+          >
+            <g data-name="Icon ionic-ios-heart">
+              <path
+                class="heart--core"
+                d="m17.547 4.188-2.633 7.114-5.974 4.965-6.152-5.516-2.2-3.429v-3.43l2.2-2.633S5.544-.272 8.94 2.545C10.328 3.697 6.912.709 13.26.803c1.889.216 4.287 3.385 4.287 3.385Z"
+                fill="#ff6641"
+              />
+              <path
+                class="heart--border"
+                d="M12.693.5h-.04a4.564 4.564 0 0 0-3.81 2.086A4.564 4.564 0 0 0 5.033.5h-.04A4.535 4.535 0 0 0 .5 5.032a9.763 9.763 0 0 0 1.917 5.322 33.6 33.6 0 0 0 6.425 6.189 33.6 33.6 0 0 0 6.425-6.189 9.763 9.763 0 0 0 1.918-5.322A4.535 4.535 0 0 0 12.693.5Z"
+                fill="none"
+                stroke="#4e4e4e"
+              />
+            </g>
+          </svg>
         </div>
       </footer>
     </div>
+
+    <ion-spinner *ngIf="!postIt" name="crescent"></ion-spinner>
   </main>
 </div>
-
-<ng-template #liked>
-  <img src="assets/imgs/postit_like_heart_filled.svg" (click)="setLikeToPostIt()">
-</ng-template>

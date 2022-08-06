@@ -1,14 +1,14 @@
 <div class="feed-item" [style.background-color]="postIt.color">
   <header>
     <ion-avatar class="user--avatar">
-      <img src="assets/imgs/user/user-example-1.jpg" />
+      <img [src]="postIt.user?.imageUrl || 'assets/imgs/user/user-example-1.jpg'" />
     </ion-avatar>
     <div class="user--info">
       <span class="user--info--name">
-        Ana Bonfim
+        {{ postIt.user?.name }}
       </span>
       <span class="user--info--role">
-        Economista
+        {{ postIt.user?.role }}
       </span>
     </div>
     <button class="read--more" type="button" [routerLink]="['/feed', postIt.id]">
@@ -33,6 +33,7 @@
 
       <svg class="heart"
           (click)="setLikeToPostIt()"
+          [class.disabled]="isLoading"
           [class.heart--filled]="postIt.hasLiked"
           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.685 17.159">
         <g data-name="Icon ionic-ios-heart">

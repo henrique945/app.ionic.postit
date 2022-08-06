@@ -23,7 +23,7 @@ export class FeedItemComponent {
   public async setLikeToPostIt(): Promise<void> {
     this.isLoading = true;
     const [, errorMessage] = await this.note.setLikeOnPostit(this.postIt);
-    this.isLoading = true;
+    this.isLoading = false;
 
     if (errorMessage)
       return this.helper.showToast(errorMessage, 5_000);

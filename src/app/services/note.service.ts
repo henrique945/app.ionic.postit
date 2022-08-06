@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { apiRoutes } from '../../environments/api-routes';
 import { AsyncResult } from '../models/interfaces/async-result';
 import { PostItPayload } from '../models/payloads/postit.payload';
+import { CommentProxy } from '../models/proxies/comment.proxy';
+import { FeedPostItProxy } from '../models/proxies/feed-postit.proxy';
 import { PostItProxy } from '../models/proxies/postit.proxy';
 import { HttpAsyncService } from '../modules/http-async/services/http-async.service';
-import { FeedPostItProxy } from '../models/proxies/feed-postit.proxy';
 
 @Injectable({
   providedIn: 'root',
@@ -94,5 +95,26 @@ export class NoteService {
     if (error) return [false, error.error.message];
 
     return [true];
+  }
+
+  public async get(id: number): Promise<AsyncResult<FeedPostItProxy>> {
+    const url = apiRoutes.notes.get.replace('{noteId}', id.toString());
+
+    const [success, error] = await this.http.get<FeedPostItProxy>(url);
+
+    if (error) return [null, error.error.message];
+
+    return [success];
+  }
+
+  public async sendComment(id: number, commentText: string): Promise<AsyncResult<CommentProxy>> {
+    const url = apiRoutes.notes.comment.create
+    .replace('{noteId}', id.toString());
+
+    const [success, error] = await this.http.post<CommentProxy>(url, { comment: commentText });
+
+    if (error) return [null, error.error.message];
+
+    return [success]
   }
 }
