@@ -4,6 +4,7 @@ import { AsyncResult } from '../models/interfaces/async-result';
 import { PostItPayload } from '../models/payloads/postit.payload';
 import { PostItProxy } from '../models/proxies/postit.proxy';
 import { HttpAsyncService } from '../modules/http-async/services/http-async.service';
+import { FeedPostItProxy } from '../models/proxies/feed-postit.proxy';
 
 @Injectable({
   providedIn: 'root',
@@ -61,10 +62,37 @@ export class NoteService {
     return [true];
   }
 
-  public async publish(postIt: PostItPayload): Promise<AsyncResult<PostItProxy>> {
+  public async publish(
+    postIt: PostItPayload
+  ): Promise<AsyncResult<PostItProxy>> {
     return this.update({
       ...postIt,
       isPublic: true,
     });
+  }
+
+  public async getFeedNotes(): Promise<AsyncResult<FeedPostItProxy[]>> {
+    const [success, error] = await this.http.get<FeedPostItProxy[]>(
+      apiRoutes.notes.feed
+    );
+
+    if (error) return [[], error.error.message];
+
+    return [success];
+  }
+
+  public async setLikeOnPostit(
+    postit: FeedPostItProxy
+  ): Promise<AsyncResult<boolean>> {
+    const url = postit.hasLiked
+      ? apiRoutes.notes.like.delete.replace('{noteId}', postit.id.toString())
+      : apiRoutes.notes.like.create.replace('{noteId}', postit.id.toString());
+    const [, error] = postit.hasLiked
+      ? await this.http.delete(url)
+      : await this.http.post(url);
+
+    if (error) return [false, error.error.message];
+
+    return [true];
   }
 }

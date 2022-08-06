@@ -1,62 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
-import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
-import { HttpAsyncService } from '../../../modules/http-async/services/http-async.service';
-import { apiRoutes } from '../../../../environments/api-routes';
+import { Component } from '@angular/core';
+import { FeedPostItProxy } from '../../../models/proxies/feed-postit.proxy';
+import { HelperService } from '../../../services/helper.service';
+import { NoteService } from '../../../services/note.service';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.page.html',
   styleUrls: ['./feed.page.scss'],
 })
-export class FeedPage implements OnInit {
-
+export class FeedPage {
   constructor(
-    private readonly http: HttpAsyncService,
-  ) {
-    this.http.get(apiRoutes.notes.me).then(console.log);
+    private readonly helper: HelperService,
+    private readonly note: NoteService
+  ) {}
+
+  public isLoading: boolean = false;
+
+  public postItArray: FeedPostItProxy[] = [];
+
+  public async ionViewDidEnter(): Promise<void> {
+    await this.loadFeedNotes();
   }
 
-  public postItArray: PostItProxy[] = [
-    {
-      id: 0,
-      title: 'Título do post0',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.',
-      color: PostItColorEnum.GREEN
-    },
-    {
-      id: 1,
-      title: 'Título do post1',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.',
-      color: PostItColorEnum.YELLOW
-    },
-    {
-      id: 2,
-      title: 'Título do post2',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.',
-      color: PostItColorEnum.BLUE
-    },
-    {
-      id: 3,
-      title: 'Título do post3',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.',
-      color: PostItColorEnum.PURPLE
-    },
-    {
-      id: 4,
-      title: 'Título do post4',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.',
-      color: PostItColorEnum.RED
-    },
-    {
-      id: 5,
-      title: 'Título do post4',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis imperdiet sem. Suspendisse potenti. Curabitur eget nibh sed arcu cursus venenatis.',
-      color: PostItColorEnum.PINK
-    }
-  ];
+  public async loadFeedNotes(): Promise<void> {
+    this.isLoading = true;
+    const [postits, message] = await this.note.getFeedNotes();
+    this.isLoading = false;
 
-  ngOnInit() {
+    if (message) return this.helper.showToast(message, 5_000);
+
+    this.postItArray = postits;
   }
-
 }

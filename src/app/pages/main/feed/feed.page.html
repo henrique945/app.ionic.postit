@@ -1,4 +1,4 @@
-<div class="feed">  
+<div class="feed">
   <img class="detail" src="assets/imgs/background.svg">
 
   <header>
@@ -9,7 +9,9 @@
     <ng-container *ngFor="let post of postItArray">
       <div class="feed-item">
         <app-feed-item [postIt]="post"></app-feed-item>
-      </div>      
+      </div>
     </ng-container>
+
+    <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
   </main>
 </div>
