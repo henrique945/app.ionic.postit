@@ -1,1 +1,1 @@
-export type AsyncResult<T> = [success: T | null, message: string | undefined];
+export type AsyncResult<T> = [success: T | null, message?: string];

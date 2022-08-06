@@ -4,11 +4,11 @@
 
   <span *ngIf="!create" class="postit-modal--options" id="left-start">...</span>
   <ion-popover trigger="left-start" side="left" alignment="start" [dismissOnSelect]="true">
-    <ng-template>  
+    <ng-template>
       <ion-content class="ion-padding postit-modal--options-box">
         <ion-list>
           <ion-item button="true" detail="false" (click)="create = true">Editar</ion-item>
-          <ion-item button="true" detail="false">Publicar no feed</ion-item>
+          <ion-item button="true" detail="false" (click)="publishPostit()">Publicar no feed</ion-item>
           <ion-item button="true" detail="false" (click)="deletePostIt()">Excluir nota</ion-item>
           <ion-item button="true" detail="false" (click)="closeModal()">Fechar nota</ion-item>
         </ion-list>
@@ -18,20 +18,22 @@
 
   <header>
     <input [readOnly]="!create"
-           class="postit-modal--title" 
-           type="text" 
-           [(ngModel)]="postIt.title" 
+           class="postit-modal--title"
+           type="text"
+           [(ngModel)]="postIt.title"
            placeholder="Título da nota">
   </header>
 
   <main>
     <textarea [readOnly]="!create"
-              class="postit-modal--annotation" 
-              [(ngModel)]="postIt.annotation" 
+              class="postit-modal--annotation"
+              [(ngModel)]="postIt.annotation"
               placeholder="Inserir anotações aqui"></textarea>
   </main>
 
   <footer>
-    <span (click)="savePostIt()">Colar no mural</span>
+    <span [class.disabled]="isLoading" (click)="savePostIt()">Colar no mural</span>
+
+    <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
   </footer>
 </div>

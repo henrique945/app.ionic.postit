@@ -4,6 +4,9 @@ export const apiRoutes = {
   },
   notes: {
     me: '/note/me',
+    create: '/note',
+    delete: '/note/{noteId}',
+    update: '/note/{noteId}',
   },
   users: {
     create: '/user',
