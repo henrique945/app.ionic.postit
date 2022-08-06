@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
 import { HelperService } from 'src/app/services/helper.service';
-import { Router } from '@angular/router';
-import { HttpAsyncService } from '../../modules/http-async/services/http-async.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +14,7 @@ export class LoginPage {
   constructor(
     private readonly helper: HelperService,
     private readonly router: Router,
-    private readonly http: HttpAsyncService,
+    private readonly auth: AuthService,
   ) { }
 
   public loginPayload: LoginPayload = {
@@ -40,24 +39,15 @@ export class LoginPage {
       return;
 
     this.isLoading = true;
+    const [isSuccess, message] = await this.auth.login(this.loginPayload.email, this.loginPayload.password);
+    this.isLoading = false;
 
-    // toast
-    await this.helper.showToast('Carregando...');
+    if (isSuccess) {
+      return void await this.router.navigate(['/home']);
+    }
 
     // alert
-    await this.helper.showAlert('Hello', [
-      {
-        text: 'Ok',
-        handler: () => console.log('Ok!'),
-      },
-      {
-        text: 'Outro',
-        handler: () => console.log('Outro!'),
-      }
-    ]);
-
-    console.log(this.loginPayload);
-    await this.router.navigate(['/home']);
+    await this.helper.showToast(message, 5_000);
   }
 
   public canLogin(): boolean {
