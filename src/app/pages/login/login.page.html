@@ -97,7 +97,7 @@
 
   <span class="signup--required">Ao registrar-me, concordo com os termos de uso a Política de Privacidade do aplicativo.</span>
 
-  <ion-button class="button" [class.disabled]="!canRegister()" (click)="isSigning = !isSigning">
+  <ion-button class="button" [class.disabled]="!canRegister()" (click)="register()">
     {{ isLoading ? 'carregando...' : 'Criar conta' }}
     <app-half-circle-spinner *ngIf="isLoading" [animationDuration]="1000" [size]="25" [color]="'white'">
     </app-half-circle-spinner>

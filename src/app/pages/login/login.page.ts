@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
 import { HelperService } from 'src/app/services/helper.service';
 import { AuthService } from '../../services/auth.service';
+import { RegisterPayload, CreateUserPayload } from '../../models/payloads/create-user.payload';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginPage {
     password: '',
   }
 
-  public registerPayload = {
+  public registerPayload: RegisterPayload = {
     name: '',
     email: '',
     confirmEmail: '',
@@ -86,4 +87,18 @@ export class LoginPage {
     console.log($event);
   }
 
+  public async register(): Promise<void> {
+    if (!this.canRegister())
+      return;
+
+    this.isLoading = true;
+    const [isSuccess, message] = await this.auth.register(this.registerPayload);
+    this.isLoading = false;
+
+    if (isSuccess)
+      return void await this.router.navigate(['/home']);
+
+    // alert
+    await this.helper.showToast(message, 5_000);
+  }
 }

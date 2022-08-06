@@ -5,4 +5,7 @@ export const apiRoutes = {
   notes: {
     me: '/note/me',
   },
+  users: {
+    create: '/user',
+  },
 } as const;

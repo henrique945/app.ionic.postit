@@ -22,8 +22,8 @@ export class HttpAsyncService {
       .then((result: [T | null, HttpErrorResponse | null]) => result);
   }
 
-  public async put<T>(url: string, payload?: object): Promise<[T | null, HttpErrorResponse | null]> {
-    return this.http.put<T>(url, payload).toPromise()
+  public async put<T>(url: string, body?: any): Promise<[T | null, HttpErrorResponse | null]> {
+    return this.http.put<T>(url, body).toPromise()
       .then(success => [success, null])
       .catch(error => [null, error])
       .then((result: [T | null, HttpErrorResponse | null]) => result);
