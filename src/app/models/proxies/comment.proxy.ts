@@ -1,3 +1,3 @@
 export interface CommentProxy {
-    comment: string;
+  comment: string;
 }
