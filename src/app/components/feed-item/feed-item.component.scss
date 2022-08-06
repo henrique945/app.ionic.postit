@@ -65,8 +65,9 @@
     }
   }
 
-  footer {
-    display: flex;
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 5rem;
 
     .comment--section {
       flex: 1;
@@ -76,12 +77,14 @@
       border-radius: 1rem;
       border: 1px solid #000;
       padding: 0 0.4rem;
+      max-width: 100%;
 
       input {
         background: transparent;
         border: none;
         color: #000;
         outline: 0;
+        width: 100%;
       }
 
       button {
@@ -94,8 +97,8 @@
   .actions--section {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 5rem;
+    justify-content: space-between;
+    padding-left: 0.5rem;
 
     img {
       width: 1.5rem;
@@ -105,9 +108,10 @@
 }
 
 .heart {
+  height: 1.5rem;
+  width: 1.5rem;
+
   &--filled {
-    height: 1.5rem;
-    width: 1.5rem;
     transform: translateZ(0);
 
     --heart-scale: 1;
