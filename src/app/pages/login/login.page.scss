@@ -32,6 +32,7 @@ app-half-circle-spinner {
   header {
     width: 100%;
     transition: 500ms;
+    overflow: hidden;
 
     .logo {
       width: 100%;
@@ -54,7 +55,8 @@ app-half-circle-spinner {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    overflow-y: auto;
+    padding-top: 1rem;
     font-style: italic;
     background: white;
     color: black;
