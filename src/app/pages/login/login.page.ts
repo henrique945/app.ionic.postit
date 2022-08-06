@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
 import { HelperService } from 'src/app/services/helper.service';
 import { Router } from '@angular/router';
+import { HttpAsyncService } from '../../modules/http-async/services/http-async.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginPage {
   constructor(
     private readonly helper: HelperService,
     private readonly router: Router,
+    private readonly http: HttpAsyncService,
   ) { }
 
   public loginPayload: LoginPayload = {
