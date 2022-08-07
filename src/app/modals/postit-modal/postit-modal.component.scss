@@ -17,7 +17,7 @@ ion-spinner {
     position: relative;
 
     width: 85vw;
-    height: 65vh;
+    height: var(--height);
     padding: 2rem;
 
     color: #343434;
