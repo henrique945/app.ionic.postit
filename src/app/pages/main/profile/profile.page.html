@@ -1,9 +1,67 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
+  <div class="profile" [class.settings-enable--profile]="isSettingsEnabled">
+
+    <div class="profile--background">
+      <img src="assets/imgs/background.svg" alt="">
+    </div>
+
+    <div class="profile--container">
+      <header class="profile--header">
+        <div class="profile--header--img">
+          <img [src]="myUser?.imageUrl || 'assets/imgs/user/user-example-1.jpg'" alt="">
+        </div>
+
+        <span class="profile--header--name"><b>{{ myUser?.name }}</b></span>
+
+        <span class="profile--header--profession"><b>{{ myUser?.role }}</b></span>
+
+        <div class="profile--header--menu">
+          <img id="hamburger" (click)="isSettingsEnabled = true" src="assets/imgs/hamburger_menu.svg" alt="">
+        </div>
+      </header>
+
+      <section class="profile--title">
+        <p><b>NOTAS PÚBLICAS</b></p>
+      </section>
+
+      <div class="postit">
+        <ng-container *ngFor="let postit of myPostits">
+          <!-- <app-postit-full [postit]="postit" ></app-postit-full> -->
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+
 </ion-content>
+
+
+<section
+  class="config"
+  [class.settings-enable]="isSettingsEnabled">
+  <header>
+
+    <ion-icon class="config--backbutton"
+     name="arrow-back-outline"
+     (click)="isSettingsEnabled = false"
+     ></ion-icon>
+
+    <span><b>Ajustes</b></span>
+  </header>
+
+  <div class="config--list">
+  <p (click)="clickConfigList(0)">Ajustes</p>
+  <p (click)="clickConfigList(1)">Ajustes</p>
+  <p (click)="clickConfigList(2)">Ajustes</p>
+  <p (click)="clickConfigList(3)">Sair</p>
+  </div>
+
+  <footer>
+    <img src="assets/imgs/login_logo.svg" alt="">
+  </footer>
+
+</section>
+
+
+<div class="brightness" [class.settings-enable--brightness]="isSettingsEnabled"></div>

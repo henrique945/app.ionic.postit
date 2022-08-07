@@ -1,0 +1,166 @@
+.profile{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  filter: brightness(1);
+  transition: filter 250ms;
+
+  &--background{
+    height: 13rem;
+    width: 100%;
+    background: linear-gradient(45deg, #A7CBE5, #D9E2B7);
+    overflow: hidden;
+    img{
+      width: 100%;
+    }
+  }
+
+  &--container{
+    width: 100%;
+    height: 100%;
+    margin-top: -10rem;
+
+    border-radius: 28px 28px 0 0;
+
+    background-color: white;
+    box-shadow: 0px -2px 6px #0000001A
+  }
+
+  &--header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--img{
+      $img-size: 7rem;
+      height: $img-size;
+      width: $img-size;
+      margin-top: -$img-size/4;
+
+      img{
+        border-radius: 50%;
+        object-fit: cover;
+        border: 10px solid white;
+      }
+    }
+
+    &--name{
+      font-size: 22px;
+    }
+
+    &--profession{
+      font-size: small;
+      color: #707070;
+    }
+
+    &--menu{
+      position: absolute;
+      top: 3rem;
+      right: 1.5rem;
+      img{
+
+      }
+    }
+  }
+
+  &--title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+}
+
+.postit{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem var(--navbar-total-height);
+
+  app-postit-full{
+    padding-bottom: 2rem;
+  }
+}
+
+
+.config{
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 100%;
+  width: 20rem;
+
+  background: white;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms;
+
+  &--backbutton{
+    position: absolute;
+    left: 2rem;
+    font-size: xx-large;
+  }
+
+  header{
+    padding: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #707070;
+  }
+
+  &--list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 1rem;
+    color: #707070;
+
+    p{
+      font-style: italic;
+    }
+  }
+
+  footer{
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.settings-enable{
+  opacity: 1 !important;
+  pointer-events: all;
+  z-index: 9999;
+
+  &--brightness{
+    background: rgba(0,0,0,0.5) !important;
+  }
+
+  &--profile{
+    overflow: hidden;
+  }
+}
+
+.brightness{
+  z-index: 1;
+
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+
+  height: 100vh;
+  width: 100vw;
+
+  background: rgba(0,0,0,0);
+  transition: background-color 0.5s;
+}
