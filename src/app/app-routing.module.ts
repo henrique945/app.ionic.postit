@@ -3,20 +3,19 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './guards/authentication.guard';
 
 export const authenticatedRouteParams = {
- canActivate: [AuthenticationGuard],
- data: {
-  protectedRoute: true,
-  routeToRedirect: '/login'
- }
+  canActivate: [AuthenticationGuard],
+  data: {
+    protectedRoute: true,
+    routeToRedirect: '/login'
+  }
 }
 export const unAuthenticatedRouteParams = {
   canActivate: [AuthenticationGuard],
   data: {
     unprotectedRoute: true,
     routeToRedirect: '/home'
-   }
+  }
 }
-
 
 const routes: Routes = [
   {
@@ -26,27 +25,27 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
     ...unAuthenticatedRouteParams,
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/main/home/home.module').then( m => m.HomePageModule),
+    loadChildren: () => import('./pages/main/home/home.module').then(m => m.HomePageModule),
     ...authenticatedRouteParams
   },
   {
     path: 'feed',
-    loadChildren: () => import('./pages/main/feed/feed.module').then( m => m.FeedPageModule),
+    loadChildren: () => import('./pages/main/feed/feed.module').then(m => m.FeedPageModule),
     ...authenticatedRouteParams
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/main/profile/profile.module').then( m => m.ProfilePageModule),
+    loadChildren: () => import('./pages/main/profile/profile.module').then(m => m.ProfilePageModule),
     ...authenticatedRouteParams
   },
   {
     path: 'feed/:id',
-    loadChildren: () => import('./pages/main/feed-detail/feed-detail.module').then( m => m.FeedDetailPageModule),
+    loadChildren: () => import('./pages/main/feed-detail/feed-detail.module').then(m => m.FeedDetailPageModule),
     ...authenticatedRouteParams
   },
   {

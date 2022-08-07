@@ -18,10 +18,9 @@ export class ProfilePage {
   //#region Constructor
   constructor(
     private router: Router,
-    private readonly authService: AuthService,
     private readonly noteService: NoteService,
     private readonly helper: HelperService,
-  ) { }
+  ) {}
 
   //#endregion
 
@@ -44,6 +43,7 @@ export class ProfilePage {
   public async ionViewDidEnter(): Promise<void> {
     this.loading = true;
     const [note, message] = await this.noteService.getMyFeedNotes();
+
     // TODO: IMPLEMENTAR GETME
     const success = JSON.parse(localStorage.getItem(environment.keys.user));
     this.loading = false;
