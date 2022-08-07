@@ -11,7 +11,7 @@ export class AuthenticationGuard implements CanActivate {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
-  ) {}
+  ) { }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
