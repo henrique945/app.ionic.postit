@@ -10,10 +10,10 @@ app.use(cacheControl({
 }));
 app.use(helmet());
 app.use(compression());
-app.use(express.static(${__dirname}/www));
+app.use(express.static(`${__dirname}/www`));
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(${__dirname}/www/index.html));
+    res.sendFile(path.join(`${__dirname}/www/index.html`));
 });
 
 app.listen(process.env.PORT || 8080);
