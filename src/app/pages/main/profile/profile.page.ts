@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileSettingsEnum } from 'src/app/models/enums/profile-settings.enum';
 import { FeedPostItProxy } from 'src/app/models/proxies/feed-postit.proxy';
 import { AuthService } from 'src/app/services/auth.service';
 import { HelperService } from 'src/app/services/helper.service';
@@ -37,6 +38,8 @@ export class ProfilePage {
 
   public post: FeedPostItProxy[];
 
+  public profileSettingsEnum: typeof ProfileSettingsEnum = ProfileSettingsEnum;
+
   //#endregion
 
   //#region Public Methods
@@ -60,19 +63,15 @@ export class ProfilePage {
     this.myUser = success;
   }
 
-  public async clickConfigList(index: 0 | 1 | 2 | 3): Promise<void> {
-    switch (index) {
-      case 1: {
-        break;
-      }
-      case 2: {
-        break;
-      }
-      case 3: {
-        localStorage.clear();
-        await this.router.navigate(['/login']);
-        break;
-      }
+  public async clickConfigList(selectedSettings: ProfileSettingsEnum): Promise<void> {
+
+    if(selectedSettings === ProfileSettingsEnum.EXIT){
+      localStorage.clear();
+      return void await this.router.navigate(['/login']);
+    }
+
+    if(selectedSettings === ProfileSettingsEnum.ABOUT_US){
+      return void this.helper.showToast('Projeto Bootcamp LIGA - 2022', 5_000)
     }
   }
 

@@ -51,10 +51,10 @@
   </header>
 
   <div class="config--list">
-  <p (click)="clickConfigList(0)">Ajustes</p>
-  <p (click)="clickConfigList(1)">Ajustes</p>
-  <p (click)="clickConfigList(2)">Ajustes</p>
-  <p (click)="clickConfigList(3)">Sair</p>
+  <p (click)="clickConfigList(profileSettingsEnum.EDIT_PROFILE)">Editar perfil</p>
+  <p (click)="clickConfigList(profileSettingsEnum.EDIT_PROFILE_PICTURE)">Editar foto de perfil</p>
+  <p (click)="clickConfigList(profileSettingsEnum.EXIT)">Sair</p>
+  <p (click)="clickConfigList(profileSettingsEnum.ABOUT_US)">Sobre nós</p>
   </div>
 
   <footer>

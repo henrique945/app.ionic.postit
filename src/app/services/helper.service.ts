@@ -13,10 +13,10 @@ export class HelperService {
     private readonly alertController: AlertController,
   ) {}
 
-  public async showToast(message: string, duration: number = 2000): Promise<void> {
+  public async showToast(message: string, durationInMilliseconds: number = 2000): Promise<void> {
     const toast = await this.toastController.create({
       message: message,
-      duration: duration,
+      duration: durationInMilliseconds,
     });
     toast.present();
   }
