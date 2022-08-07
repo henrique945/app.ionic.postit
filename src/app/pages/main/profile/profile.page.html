@@ -26,8 +26,8 @@
       </section>
 
       <div class="postit">
-        <ng-container *ngFor="let postit of myPostits">
-          <!-- <app-postit-full [postit]="postit" ></app-postit-full> -->
+        <ng-container *ngFor="let postit of post">
+          <app-feed-item [postIt]="postit"></app-feed-item>
         </ng-container>
       </div>
     </div>

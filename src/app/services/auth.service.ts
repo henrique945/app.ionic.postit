@@ -42,4 +42,8 @@ export class AuthService {
 
     return this.login(payload.email, payload.password);
   }
+
+  public getUserTokenFromStorage(): string {
+    return localStorage.getItem(environment.keys.token);
+  }
 }

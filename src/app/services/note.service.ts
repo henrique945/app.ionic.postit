@@ -82,6 +82,18 @@ export class NoteService {
     return [success];
   }
 
+  public async getMyFeedNotes(): Promise<AsyncResult<FeedPostItProxy[]>> {
+    const query = `?filter="userId||$eq||3"`
+
+    const [success, error] = await this.http.get<FeedPostItProxy[]>(
+      apiRoutes.notes.feed + query
+    );
+
+    if (error) return [[], error.error.message];
+
+    return [success];
+  }
+
   public async setLikeOnPostit(
     postit: FeedPostItProxy
   ): Promise<AsyncResult<boolean>> {
